@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <mpi.h>
-#include <omp.h>
 #include <chrono>
 
 using namespace std;
@@ -49,11 +47,11 @@ void kMeans(vector<Point>& points, int k) {
     while (!converged) {
         converged = true;
         // Assign points to nearest centroid
-        // #pragma omp parallel num_threads(MAX)
+        
         for (int i = 0; i < points.size(); i++) {
             double min_dist = distance(points[i], centroids[0]);
             int min_index = 0;
-            // #pragma omp parallel for
+            
             for (int j = 1; j < k; j++) {
                 double dist = distance(points[i], centroids[j]);
                 if (dist < min_dist) {
