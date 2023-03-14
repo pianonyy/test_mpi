@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
         // Check for convergence
         bool converged = true;
         for (int i = 0; i < k; ++i) {
-            if (sqrt(pow(new_centroids[i].x - centroids[i].x, 2) + pow(new_centroids[i].y - centroids[i].y, 2)) > 1e-6) {
+            if (sqrt(pow(new_centroids[i].x - centroids[i].x, 2) + pow(new_centroids[i].y - centroids[i].y, 2)) > 1e-5) {
                 converged = false;
                 break;
             }
