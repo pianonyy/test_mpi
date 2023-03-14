@@ -1,0 +1,81 @@
+mint@mint:~/test_mpi$ mpic++ kmeans_mpi.cpp -o mpi_app
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 1
+Duration: 542035 microseconds
+Final centroids:
+24.3683,73.9493
+24.3095,23.9265
+74.422,24.4901
+74.6112,74.3805
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 2
+Duration: 502118 microseconds
+Final centroids:
+24.5666,74.602
+74.442,74.6282
+24.5764,24.3813
+74.5316,24.4436
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 4
+Duration: 547747 microseconds
+Final centroids:
+74.4672,74.5098
+24.627,74.4572
+24.3834,24.5488
+74.6889,24.5688
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 8
+Duration: 570316 microseconds
+Final centroids:
+74.5813,74.393
+24.5247,24.5084
+24.5096,74.4586
+74.5913,24.4452
+mint@mint:~/test_mpi$ vim kmeans_
+kmeans_mpi.cpp           kmeans_sequantional.cpp  
+mint@mint:~/test_mpi$ vim kmeans_mpi.cpp 
+mint@mint:~/test_mpi$ mpic++ kmeans_mpi.cpp -o mpi_app
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 1
+Duration: 218543 microseconds
+Final centroids:
+24.526,49.3325
+74.6431,49.3477
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 2
+Duration: 291858 microseconds
+Final centroids:
+24.4665,50.1543
+74.318,49.0691
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 4
+Duration: 261693 microseconds
+Final centroids:
+49.4319,24.7127
+49.4535,74.4998
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 8
+Duration: 437814 microseconds
+Final centroids:
+74.5559,49.061
+24.5184,49.9428
+mint@mint:~/test_mpi$ vim kmeans_mpi.cpp 
+mint@mint:~/test_mpi$ mpic++ kmeans_mpi.cpp -o mpi_app
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 1
+Duration: 830843 microseconds
+Final centroids:
+67.7314,22.7266
+67.9921,76.2933
+19.1138,49.7939
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 2
+Duration: 830901 microseconds
+Final centroids:
+76.3456,31.0501
+22.6434,31.6288
+49.7781,79.8668
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 4
+Duration: 551474 microseconds
+Final centroids:
+76.2856,30.947
+48.9934,79.6379
+22.7408,31.0587
+mint@mint:~/test_mpi$ mpiexec ./mpi_app -n 8
+Duration: 403048 microseconds
+Final centroids:
+19.0291,50.8116
+66.9127,22.466
+68.5374,76.112
+mint@mint:~/test_mpi$ 
+
