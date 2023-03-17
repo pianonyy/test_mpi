@@ -1,5 +1,7 @@
 #include <mpi.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <vector>
 #include <cmath>
 #include <cstdlib>
@@ -14,6 +16,37 @@ struct Point {
     double y;
 };
 
+std::vector<Point> loadPointsFromCSV(const std::string& filePath) {
+    std::vector<Point> points;
+
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filePath << std::endl;
+        return points;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream ss(line);
+        std::string token;
+
+        Point point;
+        std::getline(ss, token, ',');
+        //std::cout<<'q'<< token<<endl;
+        point.x = std::stod(token);
+
+        std::getline(ss, token, ',');
+        //std::cout<<'w'<< token << endl;
+        point.y = std::stod(token);
+
+        points.push_back(point);
+    }
+
+    file.close();
+    return points;
+}
+
+
 int main(int argc, char** argv) {
     MPI_Init(&argc, &argv);
     int num_procs, rank;
@@ -22,9 +55,11 @@ int main(int argc, char** argv) {
 
     // Initialize random seed
     srand(time(NULL));
+    
+    
 
     // Generate random data points
-    vector<Point> points;
+    /*vector<Point> points;
     const int num_points = 100000;
     const int num_dims = 2;
     for (int i = 0; i < num_points / num_procs; ++i) {
@@ -32,7 +67,15 @@ int main(int argc, char** argv) {
         p.x = rand() % 100;
         p.y = rand() % 100;
         points.push_back(p);
+    }*/
+
+    std::vector<Point> points = loadPointsFromCSV("./points.csv");
+    const int num_points = points.size();
+    const int num_dims = 2;
+    for (const auto& point : points) {
+        std::cout << "x: " << point.x << ", y: " << point.y << std::endl;
     }
+
 
     // Broadcast the data to all processes
     MPI_Bcast(points.data(), num_points / num_procs * num_dims, MPI_DOUBLE, 0, MPI_COMM_WORLD);
