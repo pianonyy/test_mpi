@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <vector>
 
 struct Point2D {
@@ -17,18 +16,9 @@ std::vector<Point2D> loadPointsFromFile(const std::string& filePath) {
         return points;
     }
 
-    std::string line;
-    while (std::getline(file, line)) {
-        std::istringstream ss(line);
-        std::string token;
-
-        Point2D point;
-        std::getline(ss, token, ',');
-        point.x = std::stod(token);
-
-        std::getline(ss, token, ',');
-        point.y = std::stod(token);
-
+    double x, y;
+    while (file >> x >> y) {
+        Point2D point { x, y };
         points.push_back(point);
     }
 
